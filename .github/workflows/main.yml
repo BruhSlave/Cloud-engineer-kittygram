@@ -102,7 +102,7 @@ jobs:
 
   telegram_notification:
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: frontend_backend_tests
 
     steps:
       - name: Send message
