@@ -81,7 +81,7 @@ jobs:
         with:
           context: nginx/
           push: true
-          tags: iezek1il/build-push-action@v4
+          tags: iezek1il/kittygram-gateway:latest
 
   deploy:
     runs-on: ubuntu-latest
