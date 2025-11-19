@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: kittygram-backend
+    container_name: iezek1il/kittygram-backend
     image: kittygram-backend
     ports:
       - 8000:8000
@@ -26,7 +26,7 @@ services:
 
   frontend:
     container_name: kittygram-frontend
-    image: kittygram-frontend
+    image: iezek1il/kittygram-frontend
     build:
       context: ./frontend
     volumes:
@@ -34,7 +34,7 @@ services:
 
   nginx:
     container_name: kittygram-gateway
-    image: kittygram-gateway
+    image: iezek1il/kittygram-gateway
     build:
       context: ./nginx
     ports:
