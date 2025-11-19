@@ -1,0 +1,70 @@
+services:
+  backend:
+    container_name: kittygram-backend
+    image: kittygram-backend
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+
+    environment:
+      DATABASE_HOST: ${POSTGRES_HOST}
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USER: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_PORT: ${POSTGRES_PORT}
+
+    volumes:
+      - ./backend_media:/app/media
+      - ./backend_static:/app/static
+
+    depends_on:
+      - postgresql
+
+    command: >
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    container_name: kittygram-frontend
+    image: kittygram-frontend
+    build:
+      context: ./frontend
+    volumes:
+      - frontend_build:/app/build
+
+  nginx:
+    container_name: kittygram-gateway
+    image: kittygram-gateway
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - frontend_build:/app/build
+      - ./backend_media:/app/media
+
+    depends_on:
+      - backend
+      - frontend
+
+  postgresql:
+    image: postgres:17
+    container_name: postgresql
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data/:/var/lib/postgresql/data/
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+volumes:
+  frontend_build:
+  media_data:
+  static_data:
+  postgres_data:
