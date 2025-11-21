@@ -67,21 +67,21 @@ jobs:
         with:
           context: backend/
           push: true
-          tags: iezek1il/kittygram-backend:latest
+          tags: iezek1il/kittygram_backend:latest
 
       - name: Frontend build and push to DockerHub
         uses: docker/build-push-action@v4
         with:
           context: frontend/
           push: true
-          tags: iezek1il/kittygram-frontend:latest
+          tags: iezek1il/kittygram_frontend:latest
 
       - name: Gateway build and push to DockerHub
         uses: docker/build-push-action@v4
         with:
           context: nginx/
           push: true
-          tags: iezek1il/kittygram-gateway:latest
+          tags: iezek1il/kittygram_gateway:latest
 
   deploy:
     runs-on: ubuntu-latest
