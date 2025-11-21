@@ -88,6 +88,9 @@ jobs:
     needs: build_push_images
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Copy compose file
         uses: appleboy/scp-action@v0.1.4
         with:
