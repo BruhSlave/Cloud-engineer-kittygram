@@ -110,7 +110,7 @@ jobs:
             cd /kittygram/ 
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
             docker compose pull
-            docker compose up --pull=missing
+            docker compose up -d
 
   telegram_notification:
     runs-on: ubuntu-latest
