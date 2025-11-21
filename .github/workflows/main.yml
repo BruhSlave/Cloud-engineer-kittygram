@@ -97,7 +97,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "Cloud-engineer-kittygram/docker-compose.yml"
+          source: "docker-compose.yml"
           target: "/kittygram/"
 
       - name: Deploy to server
