@@ -21,9 +21,6 @@ services:
     depends_on:
       - postgresql
 
-    command: >
-      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-
   frontend:
     container_name: kittygram-frontend
     image: iezek1il/kittygram_frontend:latest
