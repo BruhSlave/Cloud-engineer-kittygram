@@ -15,8 +15,8 @@ services:
       DATABASE_PORT: ${POSTGRES_PORT}
 
     volumes:
-      - ./backend_media:/app/media
-      - ./backend_static:/app/static
+      - backend_media:/app/media
+      - backend_static:/app/static
 
     depends_on:
       - postgresql
@@ -37,7 +37,7 @@ services:
       - 80:80
     volumes:
       - frontend_build:/app/build
-      - ./backend_media:/app/media
+      - backend_media:/app/media
 
     depends_on:
       - backend
