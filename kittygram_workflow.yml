@@ -45,6 +45,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./backend/requirements.txt
       - name: Run tests
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_DJANGO_KEY }}
+          DEBUG: ${{ secrets.DEBUG_BOOL }}
         run: |
           python -m pytest tests/
 
