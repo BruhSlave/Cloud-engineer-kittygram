@@ -68,6 +68,7 @@ jobs:
           context: backend/
           push: true
           tags: iezek1il/kittygram_backend:latest
+          no-cache: true
 
       - name: Frontend build and push to DockerHub
         uses: docker/build-push-action@v4
