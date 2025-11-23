@@ -34,7 +34,7 @@ services:
       - 80:80
     volumes:
       - backend_media:/app/media
-      - static_volume:/app/static
+      - static_volume:/app/build
 
     depends_on:
       - backend
