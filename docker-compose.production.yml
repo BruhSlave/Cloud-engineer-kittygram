@@ -16,7 +16,7 @@ services:
 
     volumes:
       - backend_media:/app/media
-      - backend_static:/app/static
+      - static_volume:/app/static
 
     depends_on:
       - postgresql
@@ -25,7 +25,7 @@ services:
     container_name: kittygram-frontend
     image: iezek1il/kittygram_frontend:latest
     volumes:
-      - frontend_build:/app/build
+      - static_volume:/app/build
 
   nginx:
     container_name: kittygram-gateway
@@ -33,7 +33,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - frontend_build:/app/build
+      - static_volume:/app/static
       - backend_media:/app/media
 
     depends_on:
@@ -56,7 +56,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
 
 volumes:
-  frontend_build:
-  media_data:
-  static_data:
+  backend_media:
+  static_volume:
   postgres_data:
