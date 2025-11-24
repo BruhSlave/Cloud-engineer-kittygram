@@ -1,6 +1,6 @@
 FROM python:3.10 AS build
 
-WORKDIR /code
+WORKDIR /app
 
 COPY requirements.txt .
 
@@ -14,12 +14,12 @@ FROM python:3.10-slim
 
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /code
+WORKDIR /app
 
 COPY --from=build /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages/
 COPY --from=build /usr/local/bin/ /usr/local/bin/ 
 
-COPY --from=build /code /code
+COPY --from=build /app /app
 
 EXPOSE 8000
 
